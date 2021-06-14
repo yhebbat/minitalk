@@ -13,10 +13,8 @@ static void		ft_putstr(char *s)
 
 void ft_putnbr(int n)
 {
-    int i;
     char c;
 
-    i = 0;
     if (n < 0)
     {
         write(1, "-", 1);
@@ -56,8 +54,8 @@ int main(int ac, char **av)
     pid = getpid();
 	if (ac != 1)
     {
-        write(1,"error",6);
-        return (0);
+        ft_putstr("🚨error🚨\nThe number of arguments is not correct\n");
+        exit(0);
     }
     if (av[0])
     {

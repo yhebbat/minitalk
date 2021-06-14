@@ -13,10 +13,8 @@ static void		ft_putstr(char *c)
 
 void ft_putnbr(int n)
 {
-    int i;
     char c;
 
-    i = 0;
     if (n < 0)
     {
         write(1, "-", 1);
@@ -39,19 +37,17 @@ int main(int ac, char **av)
     int i;
     int j;
     int ret;
-    int pid;
-    
-    pid = getpid();
+
     j = 0;
     i = 0;
     if (ac != 3)
     {
-        ft_putstr("error\n");
-        return (0);
+        ft_putstr("🚨error🚨\nThe number of arguments is not correct\n");
+        exit(0);
     }
-    ft_putstr("client pid: ");
-    ft_putnbr(pid);
-    ft_putstr("\n");
+    // ft_putstr("client pid: ");
+    // ft_putnbr(pid);
+    // ft_putstr("\n");
     while(av[2][i])
     {
         j = 0;
@@ -61,10 +57,11 @@ int main(int ac, char **av)
                 ret = kill(atoi(av[1]), SIGUSR1);
             else
                 ret = kill(atoi(av[1]), SIGUSR2);
-            if (ret == 1)
+            //ft_putnbr(ret);
+            if (ret == -1)
             {
-                ft_putstr("error\n");
-                return(0);
+                ft_putstr("🚨error🚨\nThis process does not exist\n");
+                exit(0);
             }
             j++;
         }
